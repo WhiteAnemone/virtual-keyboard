@@ -40,37 +40,54 @@ for (let i = 0; i < 5; i++) {
 // Массив рядов клавиатуры
 const keyboardRowArray = Array.from(document.querySelectorAll('.keyboard-row'));
 
+
+// Массив кодов клавиш
+const codesArray = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace',
+  'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Del',
+  'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter',
+  'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight',
+  'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'];
+
+// Массив кодов клавиш для input
+let inputCodesArray = [];
+inputCodesArray = inputCodesArray.concat(codesArray.slice(0, 13), codesArray.slice(15, 28), codesArray.slice(30, 41), codesArray.slice(43, 53), codesArray.slice(58, 59));
+
 // Функция создания клавиатуры
-const createKeyboard = () => {
+const createKeyboard = (codes) => {
   for (let i = 0; i < 14; i++) {
     key = document.createElement('div');
     keyboardRowArray[0].append(key);
     key.className = 'key-button';
+    key.classList.add(codes[i]);
   }
   for (let i = 14; i < 29; i++) {
     key = document.createElement('div');
     keyboardRowArray[1].append(key);
     key.className = 'key-button';
+    key.classList.add(codes[i]);
   }
   for (let i = 29; i < 42; i++) {
     key = document.createElement('div');
     keyboardRowArray[2].append(key);
     key.className = 'key-button';
+    key.classList.add(codes[i]);
   }
   for (let i = 42; i < 55; i++) {
     key = document.createElement('div');
     keyboardRowArray[3].append(key);
     key.className = 'key-button';
+    key.classList.add(codes[i]);
   }
   for (let i = 55; i < 64; i++) {
     key = document.createElement('div');
     keyboardRowArray[4].append(key);
     key.className = 'key-button';
+    key.classList.add(codes[i]);
   }
 };
 
 // Первоначальное создание клавиатуры
-createKeyboard();
+createKeyboard(codesArray);
 
 // Массив всех клавиш
 let arrayKeys = Array.from(document.querySelectorAll('.key-button'));
@@ -99,7 +116,7 @@ arrayKeys[56].innerHTML = 'Alt';
 arrayKeys[57].classList.add('key-button_win');
 arrayKeys[57].innerHTML = 'Win';
 arrayKeys[58].classList.add('key-button_space');
-arrayKeys[58].innerHTML = 'Space';
+arrayKeys[58].innerHTML = ' ';
 arrayKeys[59].classList.add('key-button_right-alt');
 arrayKeys[59].innerHTML = 'Alt';
 arrayKeys[60].classList.add('key-button_left-arrow');
@@ -111,57 +128,81 @@ arrayKeys[62].innerHTML = '>';
 arrayKeys[63].classList.add('key-button_right-ctrl');
 arrayKeys[63].innerHTML = 'Ctrl';
 
-// Английская клавиатура
-const engKeyboard = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
-  'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del',
-  'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter',
-  'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'UP', 'Shift',
-  'Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'LEFT', 'DOWN', 'RIGHT', 'Ctrl'];
+const engKeyboard = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=',
+  'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'a', 's', 'd', 'f',
+  'g', 'h', 'j', 'k', 'l', ';', '\'', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/'];
 
-// Русская клавиатура
-const rusKeyboard = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
-  'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Del',
-  'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter',
-  'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'UP', 'Shift',
-  'Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'LEFT', 'DOWN', 'RIGHT', 'Ctrl'];
+const rusKeyboard = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=',
+  'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'ф', 'ы', 'в',
+  'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.'];
 
 // Переменная, отслеживающая язык клавиатуры
 let language = 'English';
 
 // Функция создания клавиатуры в зависимости от языка
 const createKeys = (value) => {
+  let j = 0;
   for (let i = 0; i < 13; i++) {
-    arrayKeys[i].innerHTML = value[i];
+    arrayKeys[i].innerHTML = value[j];
+    j++;
   }
   for (let i = 15; i < 28; i++) {
-    arrayKeys[i].innerHTML = value[i];
+    arrayKeys[i].innerHTML = value[j];
+    j++;
   }
   for (let i = 30; i < 41; i++) {
-    arrayKeys[i].innerHTML = value[i];
+    arrayKeys[i].innerHTML = value[j];
+    j++;
   }
   for (let i = 43; i < 53; i++) {
-    arrayKeys[i].innerHTML = value[i];
+    arrayKeys[i].innerHTML = value[j];
+    j++;
   }
 }
 
 createKeys(engKeyboard);
-
+//  event.ctrlKey
 // Переключение языка
 document.addEventListener('keydown', function (event) {
-  if (event.altKey && event.ctrlKey) {
+  if (event.ctrlKey && event.altKey) {
     if (language == 'English') {
-      for (let i in keyboardRowArray) {
-        i.innerHTML = '';
-      }
-      // keyboardWrapper.innerHTML = '';
       createKeys(rusKeyboard);
       language = 'Russian';
     } else {
-      for (let i in keyboardRowArray) {
-        i.innerHTML = '';
-      }
       createKeys(engKeyboard);
       language = 'English';
     }
   }
+  // console.log(keyboardWrapper.querySelector('.KeyA'))
+  if (inputCodesArray.includes(event.code)) {
+    for (let i of arrayKeys) {
+      if (i.classList.contains(event.code)) {
+        input.textContent += i.textContent;
+      }
+    }
+    // input.textContent += keyboardWrapper.querySelector('event.code');
+  }
 });
+
+
+// Input in textarea
+// document.addEventListener('keydown', function (event) {
+//   // event.preventDefault();
+//   if (inputCodesArray.includes(event.code)) {
+//     input.textContent += event.key;
+//   }
+// });
+
+// Английская клавиатура
+// const engKeyboard = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
+//   'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del',
+//   'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter',
+//   'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'UP', 'Shift',
+//   'Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'LEFT', 'DOWN', 'RIGHT', 'Ctrl'];
+
+// Русская клавиатура
+// const rusKeyboard = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
+//   'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Del',
+//   'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter',
+//   'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'UP', 'Shift',
+//   'Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'LEFT', 'DOWN', 'RIGHT', 'Ctrl'];
