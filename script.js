@@ -1,3 +1,5 @@
+alert('Приветствую! Прошу дать мне ещё времени, чтобы всё доделать. Спасибо :)')
+
 const main = document.createElement('main');
 const container = document.createElement('section');
 const title = document.createElement('h1');
