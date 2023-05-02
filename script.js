@@ -1,5 +1,3 @@
-// alert('Приветствую! Прошу дать мне ещё времени, чтобы всё доделать. Спасибо :)')
-
 const main = document.createElement('main');
 const container = document.createElement('section');
 const title = document.createElement('h1');
@@ -216,6 +214,7 @@ document.addEventListener('keydown', function (event) {
   if (event.shiftKey) {
     if (letterCase == 'Lower') {
       if (language == 'English') {
+        caseArray = [];
         for (let i of engKeyboard) {
           caseArray.push(i.toUpperCase());
         }
@@ -223,6 +222,7 @@ document.addEventListener('keydown', function (event) {
         letterCase = 'Upper';
       }
       if (language == 'Russian') {
+        caseArray = [];
         for (let i of rusKeyboard) {
           caseArray.push(i.toUpperCase());
         }
