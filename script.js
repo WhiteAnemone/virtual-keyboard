@@ -113,10 +113,10 @@ arrayKeys[54].classList.add('key-button_right-shift');
 arrayKeys[54].innerHTML = 'Shift';
 arrayKeys[55].classList.add('key-button_left-ctrl');
 arrayKeys[55].innerHTML = 'Ctrl';
-arrayKeys[56].classList.add('key-button_left-alt');
-arrayKeys[56].innerHTML = 'Alt';
-arrayKeys[57].classList.add('key-button_win');
-arrayKeys[57].innerHTML = 'Win';
+arrayKeys[56].classList.add('key-button_win');
+arrayKeys[56].innerHTML = 'Win';
+arrayKeys[57].classList.add('key-button_left-alt');
+arrayKeys[57].innerHTML = 'Alt';
 arrayKeys[58].classList.add('key-button_space');
 arrayKeys[58].innerHTML = ' ';
 arrayKeys[59].classList.add('key-button_right-alt');
@@ -217,12 +217,12 @@ document.addEventListener('keyup', function (event) {
 
 const animateKey = (item) => {
   item.classList.add('key-button_pressed');
-  setTimeout(() => item.classList.remove('key-button_pressed'), 1000)
+  setTimeout(() => item.classList.remove('key-button_pressed'), 100)
 }
 
 
 for (let i of arrayKeys) {
-  i.addEventListener('click', animateKey())
+  i.addEventListener('click', () => animateKey(i))
 }
 
 // Input in textarea
