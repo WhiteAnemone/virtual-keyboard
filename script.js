@@ -1,4 +1,4 @@
-alert('Приветствую! Прошу дать мне ещё времени, чтобы всё доделать. Спасибо :)')
+// alert('Приветствую! Прошу дать мне ещё времени, чтобы всё доделать. Спасибо :)')
 
 const main = document.createElement('main');
 const container = document.createElement('section');
@@ -56,6 +56,7 @@ inputCodesArray = inputCodesArray.concat(codesArray.slice(0, 13), codesArray.sli
 
 // Функция создания клавиатуры
 const createKeyboard = (codes) => {
+  let key;
   for (let i = 0; i < 14; i++) {
     key = document.createElement('div');
     keyboardRowArray[0].append(key);
@@ -90,7 +91,6 @@ const createKeyboard = (codes) => {
 
 // Первоначальное создание клавиатуры
 createKeyboard(codesArray);
-
 // Массив всех клавиш
 let arrayKeys = Array.from(document.querySelectorAll('.key-button'));
 
@@ -191,19 +191,19 @@ document.addEventListener('keydown', function (event) {
     if (i.classList.contains(event.code)) {
       i.classList.add('key-button_pressed')
     }
-  };
+  }
   if (event.ctrlKey && event.altKey) {
     changeLanguage();
-  };
+  }
   if (event.code == 'Enter') {
     input.textContent += '\n';
-  };
+  }
   if (event.code == 'Tab') {
     input.textContent += '\t';
-  };
+  }
   if (inputCodesArray.includes(event.code)) {
     checkCode(event);
-  };
+  }
 });
 
 document.addEventListener('keyup', function (event) {
@@ -214,6 +214,16 @@ document.addEventListener('keyup', function (event) {
     }
   }
 });
+
+const animateKey = (item) => {
+  item.classList.add('key-button_pressed');
+  setTimeout(() => item.classList.remove('key-button_pressed'), 1000)
+}
+
+
+for (let i of arrayKeys) {
+  i.addEventListener('click', animateKey())
+}
 
 // Input in textarea
 // document.addEventListener('keydown', function (event) {
