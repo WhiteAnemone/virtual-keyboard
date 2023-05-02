@@ -184,16 +184,21 @@ const changeLanguage = () => {
   }
 };
 
-
 // Нажатие клавиши на реальной клавиатуре
 document.addEventListener('keydown', function (event) {
   event.preventDefault();
   if (event.ctrlKey && event.altKey) {
     changeLanguage();
-  }
+  };
+  if (event.code == 'Enter') {
+    input.textContent += '\n';
+  };
+  if (event.code == 'Tab') {
+    input.textContent += '\t';
+  };
   if (inputCodesArray.includes(event.code)) {
     checkCode(event);
-  }
+  };
 });
 
 
