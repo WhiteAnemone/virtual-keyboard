@@ -1,4 +1,4 @@
-alert('Приветствую! Прошу дать мне ещё времени, чтобы всё доделать. Спасибо :)')
+// alert('Приветствую! Прошу дать мне ещё времени, чтобы всё доделать. Спасибо :)')
 
 const main = document.createElement('main');
 const container = document.createElement('section');
@@ -163,26 +163,36 @@ const createKeys = (value) => {
 }
 
 createKeys(engKeyboard);
-//  event.ctrlKey
-// Переключение языка
-document.addEventListener('keydown', function (event) {
-  if (event.ctrlKey && event.altKey) {
-    if (language == 'English') {
-      createKeys(rusKeyboard);
-      language = 'Russian';
-    } else {
-      createKeys(engKeyboard);
-      language = 'English';
+
+// Функция поиска элемента с классом event.code
+const checkCode = (item) => {
+  for (let i of arrayKeys) {
+    if (i.classList.contains(item.code)) {
+      input.textContent += i.textContent;
     }
   }
-  // console.log(keyboardWrapper.querySelector('.KeyA'))
+};
+
+// Функия переключение языка
+const changeLanguage = () => {
+  if (language == 'English') {
+    createKeys(rusKeyboard);
+    language = 'Russian';
+  } else {
+    createKeys(engKeyboard);
+    language = 'English';
+  }
+};
+
+
+// Нажатие клавиши на реальной клавиатуре
+document.addEventListener('keydown', function (event) {
+  event.preventDefault();
+  if (event.ctrlKey && event.altKey) {
+    changeLanguage();
+  }
   if (inputCodesArray.includes(event.code)) {
-    for (let i of arrayKeys) {
-      if (i.classList.contains(event.code)) {
-        input.textContent += i.textContent;
-      }
-    }
-    // input.textContent += keyboardWrapper.querySelector('event.code');
+    checkCode(event);
   }
 });
 
