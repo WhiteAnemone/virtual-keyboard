@@ -140,24 +140,29 @@ const rusKeyboard = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-'
 
 // Переменная, отслеживающая язык клавиатуры
 let language = 'English';
+let letterCase = 'Lower';
 
 // Функция создания клавиатуры в зависимости от языка
 const createKeys = (value) => {
   let j = 0;
   for (let i = 0; i < 13; i++) {
     arrayKeys[i].innerHTML = value[j];
+    arrayKeys[i].classList.add('input-key');
     j++;
   }
   for (let i = 15; i < 28; i++) {
     arrayKeys[i].innerHTML = value[j];
+    arrayKeys[i].classList.add('input-key');
     j++;
   }
   for (let i = 30; i < 41; i++) {
     arrayKeys[i].innerHTML = value[j];
+    arrayKeys[i].classList.add('input-key');
     j++;
   }
   for (let i = 43; i < 53; i++) {
     arrayKeys[i].innerHTML = value[j];
+    arrayKeys[i].classList.add('input-key');
     j++;
   }
 }
@@ -184,6 +189,10 @@ const changeLanguage = () => {
   }
 };
 
+// const inputKeysArray = Array.from(document.querySelectorAll('.input-key'))
+
+let caseArray = [];
+
 // Нажатие клавиши на реальной клавиатуре
 document.addEventListener('keydown', function (event) {
   event.preventDefault();
@@ -194,6 +203,24 @@ document.addEventListener('keydown', function (event) {
   }
   if (event.ctrlKey && event.altKey) {
     changeLanguage();
+  }
+  if (event.shiftKey) {
+    if (letterCase == 'Lower') {
+      if (language == 'English') {
+        for (let i of engKeyboard) {
+          caseArray.push(i.toUpperCase());
+        }
+        createKeys(caseArray);
+        letterCase = 'Upper';
+      }
+      if (language == 'Russian') {
+        for (let i of rusKeyboard) {
+          caseArray.push(i.toUpperCase());
+        }
+        createKeys(caseArray);
+        letterCase = 'Upper';
+      }
+    }
   }
   if (event.code == 'Enter') {
     input.textContent += '\n';
@@ -213,16 +240,43 @@ document.addEventListener('keyup', function (event) {
       i.classList.remove('key-button_pressed');
     }
   }
+  if (event.key = 'Shift') {
+    if (letterCase == 'Upper') {
+      if (language == 'English') {
+        createKeys(engKeyboard);
+        letterCase = 'Lower';
+      }
+      if (language == 'Russian') {
+        createKeys(rusKeyboard);
+        letterCase = 'Lower';
+      }
+    }
+  }
 });
 
+// Функция анимации виртуальной клавиатуры
 const animateKey = (item) => {
   item.classList.add('key-button_pressed');
   setTimeout(() => item.classList.remove('key-button_pressed'), 100)
 }
 
-
+// Нажатие клавиши на виртуальной клавиатуре
 for (let i of arrayKeys) {
-  i.addEventListener('click', () => animateKey(i))
+  i.addEventListener('click', () => {
+    animateKey(i);
+    if (engKeyboard.includes(i.textContent) || rusKeyboard.includes(i.textContent)) {
+      input.textContent += i.textContent;
+    }
+    if (i.textContent == 'Enter') {
+      input.textContent += '\n';
+    }
+    if (i.textContent == 'Tab') {
+      input.textContent += '\t';
+    }
+    if (i.textContent == ' ') {
+      input.textContent += ' ';
+    }
+  })
 }
 
 // Input in textarea
