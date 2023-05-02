@@ -1,0 +1,137 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.title {
+  color: red;
+  text-align: center;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.keyboard-wrapper {
+  width: 924px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: azure;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 auto 30px auto;
+}
+
+.keyboard-row {
+  width: 100%;
+  display: flex;
+  column-gap: 10px;
+}
+
+.key-button {
+  width: 50px;
+  height: 50px;
+  background-color: lavender;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 50px;
+  transition: border-radius 0.3s, background-color 0.3s;
+  user-select: none;
+}
+
+.key-button:hover {
+  cursor: pointer;
+  background-color: lightgreen;
+}
+
+.key-button_backspace,
+.key-button_capslock,
+.key-button_left-shift {
+  width: 120px;
+  background-color: #333;
+  color: #fff;
+}
+
+.key-button_tab,
+.key-button_del {
+  width: 55px;
+  background-color: #333;
+  color: #fff;
+}
+
+.key-button_enter,
+.key-button_right-shift {
+  width: 110px;
+  background-color: #333;
+  color: #fff;
+}
+
+.key-button_up-arrow,
+.key-button_left-arrow,
+.key-button_down-arrow,
+.key-button_right-arrow,
+.key-button_left-ctrl,
+.key-button_right-ctrl,
+.key-button_win,
+.key-button_left-alt,
+.key-button_right-alt {
+  background-color: #333;
+  color: #fff;
+}
+
+.key-button_up-arrow {
+  transform: rotate(-90deg);
+}
+
+.key-button_down-arrow {
+  transform: rotate(90deg);
+}
+
+.key-button_space {
+  flex-grow: 1;
+  /* width: 400px; */
+}
+
+.key-button_pressed {
+  border-radius: 50%;
+  background-color: red;
+}
+
+.key-button_pressed:hover {
+  background-color: red;
+}
+
+.OS, .language {
+  text-align: center;
+  margin-bottom: 30px;
+}
