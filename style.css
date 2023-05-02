@@ -65,7 +65,8 @@ button {
   border-radius: 10px;
   text-align: center;
   line-height: 50px;
-  transition: all .3s ease-in-out;
+  transition: border-radius 0.3s, background-color 0.3s;
+  user-select: none;
 }
 
 .key-button:hover {
@@ -123,7 +124,7 @@ button {
 
 .key-button_pressed {
   border-radius: 50%;
-  /* background-color: red; */
+  background-color: red;
 }
 
 .key-button_pressed:hover {
