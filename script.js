@@ -1,4 +1,4 @@
-// alert('Приветствую! Прошу дать мне ещё времени, чтобы всё доделать. Спасибо :)')
+alert('Приветствую! Прошу дать мне ещё времени, чтобы всё доделать. Спасибо :)')
 
 const main = document.createElement('main');
 const container = document.createElement('section');
