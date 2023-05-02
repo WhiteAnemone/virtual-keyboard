@@ -187,6 +187,11 @@ const changeLanguage = () => {
 // Нажатие клавиши на реальной клавиатуре
 document.addEventListener('keydown', function (event) {
   event.preventDefault();
+  for (let i of arrayKeys) {
+    if (i.classList.contains(event.code)) {
+      i.classList.add('key-button_pressed')
+    }
+  };
   if (event.ctrlKey && event.altKey) {
     changeLanguage();
   };
@@ -201,6 +206,14 @@ document.addEventListener('keydown', function (event) {
   };
 });
 
+document.addEventListener('keyup', function (event) {
+  event.preventDefault();
+  for (let i of arrayKeys) {
+    if (i.classList.contains(event.code) && i.classList.contains('key-button_pressed')) {
+      i.classList.remove('key-button_pressed');
+    }
+  }
+});
 
 // Input in textarea
 // document.addEventListener('keydown', function (event) {
