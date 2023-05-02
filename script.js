@@ -249,7 +249,7 @@ document.addEventListener('keyup', function (event) {
       i.classList.remove('key-button_pressed');
     }
   }
-  if (event.key = 'Shift') {
+  if (event.key == 'Shift') {
     if (letterCase == 'Upper') {
       if (language == 'English') {
         createKeys(engKeyboard);
