@@ -167,7 +167,14 @@ const createKeys = (value) => {
   }
 }
 
-createKeys(engKeyboard);
+if (!window.localStorage.getItem('language')) {
+  createKeys(engKeyboard);
+  window.localStorage.setItem('language', 'English');
+} else if (window.localStorage.getItem('language') == 'English') {
+  createKeys(engKeyboard);
+} else if (window.localStorage.getItem('language') == 'Russian') {
+  createKeys(rusKeyboard);
+}
 
 // Функция поиска элемента с классом event.code
 const checkCode = (item) => {
@@ -183,9 +190,11 @@ const changeLanguage = () => {
   if (language == 'English') {
     createKeys(rusKeyboard);
     language = 'Russian';
+    window.localStorage.setItem('language', 'Russian');
   } else {
     createKeys(engKeyboard);
     language = 'English';
+    window.localStorage.setItem('language', 'English');
   }
 };
 
